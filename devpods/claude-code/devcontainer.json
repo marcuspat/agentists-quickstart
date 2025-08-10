@@ -1,0 +1,32 @@
+{
+  "image": "mcr.microsoft.com/devcontainers/base:debian",
+  "name": "Custom Claude/Rust Dev Workspace",
+  "runArgs": [
+    "--privileged"
+  ],
+  "remoteUser": "vscode",
+  "features": {
+    "ghcr.io/devcontainers/features/docker-in-docker:2": {},
+    "ghcr.io/devcontainers/features/node:1": {},
+    // Add Rust to the workspace using the official devcontainer feature
+    "ghcr.io/devcontainers/features/rust:1": {
+        "version": "1.70"
+    }
+  },
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "rooveterinaryinc.roo-cline",
+        "vsls-contrib.gistfs",
+        "github.copilot",
+        "github.copilot-chat"
+      ]
+    }
+  },
+  "shutdownAction": "none",
+  
+  // The postCreateCommand is crucial for installing and building the Rust-based CLI tools.
+  // I've added a global 'npm install' for the main Claude CLI and an 'npx' command
+  // to initialize the claude-flow project, as these were missing.
+  "postCreateCommand": "sudo apt-get update && sudo apt-get install -y tmux && npm install -g @anthropic-ai/claude-code && git clone https://github.com/jedarden/claude-usage-monitor-cli /tmp/claude-usage-monitor-cli && cd /tmp/claude-usage-monitor-cli && cargo install --path . && cd /workspaces && git clone https://github.com/ruvnet/claude-flow /tmp/claude-flow && cd /tmp/claude-flow && cargo install --path . && cd /workspaces && npx claude-flow@alpha init --force"
+}
