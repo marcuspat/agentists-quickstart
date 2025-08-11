@@ -24,6 +24,6 @@
     }
   },
   "shutdownAction": "none",
-  "postCreateCommand": "sudo apt-get update && sudo apt-get install -y tmux && npm install -g @anthropic-ai/claude-code && git clone https://github.com/jedarden/claude-usage-monitor-cli /tmp/claude-usage-monitor-cli && cd /tmp/claude-usage-monitor-cli && cargo install --path . && cd /workspaces && git clone https://github.com/ruvnet/claude-flow /tmp/claude-flow && cd /tmp/claude-flow && cargo install --path . && cd /workspaces && npx claude-flow@alpha init --force",
+  "postCreateCommand": "sudo apt-get update && sudo apt-get install -y tmux && npm install -g @anthropic-ai/claude-code && npm install -g claude-usage-cli && git clone https://github.com/jedarden/claude-usage-monitor-cli /tmp/claude-usage-monitor-cli && cd /tmp/claude-usage-monitor-cli && cargo install --path . && cd /workspaces && npx claude-flow@alpha init --force",
   "postStartCommand": "if ! tmux has-session -t persistent_claude_session 2>/dev/null; then tmux new-session -d -s persistent_claude_session 'echo \"Tmux session created automatically. Re-attach with: tmux attach -t persistent_claude_session\"'; fi"
 }
