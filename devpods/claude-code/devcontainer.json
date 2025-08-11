@@ -24,9 +24,5 @@
     }
   },
   "shutdownAction": "none",
-  
-  // The postCreateCommand is crucial for installing and building the Rust-based CLI tools.
-  // I've added a global 'npm install' for the main Claude CLI and an 'npx' command
-  // to initialize the claude-flow project, as these were missing.
   "postCreateCommand": "sudo apt-get update && sudo apt-get install -y tmux && npm install -g @anthropic-ai/claude-code && git clone https://github.com/jedarden/claude-usage-monitor-cli /tmp/claude-usage-monitor-cli && cd /tmp/claude-usage-monitor-cli && cargo install --path . && cd /workspaces && git clone https://github.com/ruvnet/claude-flow /tmp/claude-flow && cd /tmp/claude-flow && cargo install --path . && cd /workspaces && npx claude-flow@alpha init --force"
 }
