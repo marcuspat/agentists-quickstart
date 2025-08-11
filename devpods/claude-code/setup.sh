@@ -9,11 +9,6 @@ sudo apt-get install -y tmux
 npm install -g @anthropic-ai/claude-code
 npm install -g claude-usage-cli
 
-# Install claude-usage-monitor-cli
-git clone https://github.com/jedarden/claude-usage-monitor-cli /tmp/claude-usage-monitor-cli
-cd /tmp/claude-usage-monitor-cli
-cargo install --path .
-
 # Initialize claude-flow
 cd /workspaces
 npx claude-flow@alpha init --force
