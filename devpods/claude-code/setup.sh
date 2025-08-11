@@ -9,8 +9,8 @@ sudo apt-get install -y tmux
 npm install -g @anthropic-ai/claude-code
 npm install -g claude-usage-cli
 
-# Initialize claude-flow
-cd /workspaces
+# Initialize claude-flow in the project directory
+cd /workspaces/agentists-quickstart
 npx claude-flow@alpha init --force
 
 # Create claude.md file
