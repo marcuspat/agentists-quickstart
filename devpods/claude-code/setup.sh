@@ -1,5 +1,5 @@
 #!/bin/bash
-set -e
+set -ex  # Add -x for debugging output
 
 # Update and install packages
 sudo apt-get update
