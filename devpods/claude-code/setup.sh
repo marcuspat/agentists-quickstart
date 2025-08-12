@@ -47,16 +47,60 @@ cd /workspaces/agentists-quickstart
 cat << 'EOF' > claude.md
 # Claude Code Configuration - SPARC Development Environment
 
-## 🚨 CRITICAL: Initialize These Agents First
+## 🚀 SESSION INITIALIZATION PROTOCOL
 
-**At the start of every session, initialize:**
+**EVERY Claude session MUST begin with:**
 ```bash
-# Load doc-planner agent for documentation planning
+# Step 1: Initialize mandatory agents
+echo "Loading mandatory agents..."
 cat /workspaces/agentists-quickstart/agents/doc-planner.md
-
-# Load microtask-breakdown agent for atomic task creation  
 cat /workspaces/agentists-quickstart/agents/microtask-breakdown.md
+
+# Step 2: Confirm agents loaded
+echo "✅ doc-planner agent loaded"
+echo "✅ microtask-breakdown agent loaded"
+
+# Step 3: Ready for swarm/hive operations
+echo "Ready for swarm/hive initialization with mandatory agents"
 ```
+
+## 🚨 CRITICAL: Mandatory Agents for ALL Swarms/Hives
+
+**THESE AGENTS ARE AUTOMATICALLY INCLUDED IN EVERY SWARM/HIVE:**
+1. **doc-planner** - Documentation planning and phase breakdown
+2. **microtask-breakdown** - Atomic 10-minute task creation
+
+### Auto-Load Protocol for Swarms/Hives:
+```bash
+# These commands MUST be run BEFORE any swarm/hive initialization:
+cat /workspaces/agentists-quickstart/agents/doc-planner.md
+cat /workspaces/agentists-quickstart/agents/microtask-breakdown.md
+
+# Then proceed with swarm/hive:
+npx claude-flow@alpha swarm "<task>"
+# OR
+npx claude-flow@alpha hive-mind spawn "<task>"
+```
+
+### 🔴 MANDATORY SWARM/HIVE PATTERN:
+**ALWAYS structure swarm/hive commands to include these agents:**
+```bash
+# For Swarm:
+npx claude-flow@alpha swarm "Using doc-planner and microtask-breakdown agents, <your actual task>"
+
+# For Hive-mind wizard:
+npx claude-flow@alpha hive-mind wizard
+# When prompted, ALWAYS mention: "Start with doc-planner and microtask-breakdown agents"
+
+# For Hive-mind spawn:
+npx claude-flow@alpha hive-mind spawn "First use doc-planner and microtask-breakdown, then <your actual task>" --claude
+```
+
+### 🐝 Hive-Mind Specific Pattern:
+When using `hive-mind`, the mandatory agents are included by:
+1. **In the task description**: Always prefix with "Using doc-planner and microtask-breakdown agents..."
+2. **In the wizard**: When it asks for task details, start with these agents
+3. **In spawned agents**: First two spawned should always be these mandatory agents
 
 ## 🚨 CRITICAL: Concurrent Execution Rules
 
@@ -114,7 +158,13 @@ cat /workspaces/agentists-quickstart/agents/microtask-breakdown.md
 ### Build:
 - `npm run build/test/lint/typecheck`
 
-## 🤖 Agent Reference (54 Total)
+## 🤖 Agent Reference (54 Total + 2 MANDATORY)
+
+### 🔴 MANDATORY AGENTS (Always Include in Swarms/Hives)
+| Agent | Purpose | Auto-Include |
+|-------|---------|--------------|
+| doc-planner | Documentation planning & phase breakdown | YES - First in every swarm |
+| microtask-breakdown | Atomic 10-minute task creation | YES - Second in every swarm |
 
 ### Core Development
 | Agent | Purpose |
@@ -164,8 +214,46 @@ cat /workspaces/agentists-quickstart/agents/microtask-breakdown.md
 
 ## 🚀 Swarm Patterns
 
-### Full-Stack Swarm (8 agents)
+### 🚨 MANDATORY: Base Pattern for ALL Swarms/Hives
+**Whether using `swarm`, `hive-mind wizard`, or `hive-mind spawn`, ALWAYS include:**
+
+1. **For Task-based spawning:**
 ```bash
+# ALWAYS START WITH:
+Task("Documentation Planning", "Plan all phases and create structured docs", "doc-planner")
+Task("Microtask Breakdown", "Break phases into 10-minute atomic tasks", "microtask-breakdown")
+
+# THEN ADD YOUR SPECIFIC AGENTS:
+Task("Architecture", "...", "system-architect")
+Task("Backend", "...", "backend-dev")
+# ... additional agents as needed
+```
+
+2. **For command-line swarm:**
+```bash
+npx claude-flow@alpha swarm "Using doc-planner and microtask-breakdown agents, <task>"
+```
+
+3. **For hive-mind operations:**
+```bash
+# Wizard mode
+npx claude-flow@alpha hive-mind wizard
+# When prompted: "Use doc-planner and microtask-breakdown first, then..."
+
+# Direct spawn
+npx claude-flow@alpha hive-mind spawn "Start with doc-planner and microtask-breakdown, then <task>" --claude
+
+# Resume session (agents already included)
+npx claude-flow@alpha hive-mind resume session-xxxxx
+```
+
+### Full-Stack Swarm Example (10 agents total)
+```bash
+# Mandatory agents first
+Task("Documentation Planning", "Plan phases and structure", "doc-planner")
+Task("Microtask Breakdown", "Create atomic tasks", "microtask-breakdown")
+
+# Then domain-specific agents
 Task("Architecture", "...", "system-architect")
 Task("Backend", "...", "backend-dev")
 Task("Frontend", "...", "mobile-dev")
@@ -279,6 +367,11 @@ Always use Claude Sonnet. Start every Claude session with `model /sonnet`.
 
 ### Agile Delivery Protocols
 Deliver work in manageable chunks through fully automated pipelines. The goal is to deliver features and keep going unattended (don't stop!) until the feature is fully deployed.
+
+**🔴 MANDATORY: All agile work MUST start with:**
+1. Load doc-planner agent for phase planning
+2. Load microtask-breakdown agent for atomic tasks
+3. Then proceed with implementation
 
 #### Work Chunking Protocol (WCP)
 Feature-based agile with CI integration using EPICs, Features, and Issues:
