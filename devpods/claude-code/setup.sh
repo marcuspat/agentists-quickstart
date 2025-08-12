@@ -13,6 +13,17 @@ npm install -g claude-usage-cli
 cd /workspaces/agentists-quickstart
 npx claude-flow@alpha init --force
 
+# Install Claude subagents
+echo "Installing Claude subagents..."
+AGENTS_DIR="/workspaces/agentists-quickstart/agents"
+mkdir -p "$AGENTS_DIR"
+cd "$AGENTS_DIR"
+git clone https://github.com/ChrisRoyse/610ClaudeSubagents.git temp-agents
+cp -r temp-agents/*.md .
+rm -rf temp-agents
+echo "Installed $(ls -1 *.md | wc -l) agents in $AGENTS_DIR"
+cd /workspaces/agentists-quickstart
+
 # Create claude.md file
 cat << 'EOF' > claude.md
 # Claude Code Configuration - SPARC Development Environment
@@ -424,7 +435,33 @@ Deploy→E2E→Monitor→Validate→Auto-promote:
 ##### 🏆 TARGETS: Zero-downtime, <1% error rate
 EOF
 
-# Append doc-planner agent definition
+# Create subagents directory notice
 cat << 'EOF' >> claude.md
+
+---
+
+## 📚 Subagents Directory
+
+Specialized Claude subagents are available in `/workspaces/agentists-quickstart/agents/`
+
+To view available agents:
+```bash
+cat /workspaces/agentists-quickstart/agents/agents-index.md
+```
+
+To use a specific agent:
+```bash
+cat /workspaces/agentists-quickstart/agents/[agent-name].md
+```
+
+These agents provide specialized capabilities for:
+- Documentation planning (doc-planner)
+- Microtask breakdown (microtask-breakdown)
+- Code review and analysis
+- Test generation
+- And many more specialized tasks
+
+Each agent follows strict CLAUDE.md principles and provides atomic, testable tasks.
+EOF
 
 echo "Setup completed successfully!"
