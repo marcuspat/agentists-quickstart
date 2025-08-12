@@ -10,7 +10,7 @@ tmux new-window -t workspace:1 -n "Claude-2"
 
 # Create third window for Claude monitor (using the new tool)
 tmux new-window -t workspace:2 -n "Claude-Monitor"
-tmux send-keys -t workspace:2 "claude-monitor-wrapper" C-m
+tmux send-keys -t workspace:2 "claude-monitor" C-m
 
 # Create fourth window for htop
 tmux new-window -t workspace:3 -n "htop"
