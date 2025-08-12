@@ -9,7 +9,8 @@ This directory contains the complete configuration for setting up a Claude Code 
 - **setup.sh** - Automated setup script that installs all tools and 600+ Claude agents
 - **tmux-workspace.sh** - Creates a 4-window tmux session optimized for Claude development
 - **additional-agents/** - Directory containing custom agents not in the main collection
-
+- **fix_permissions_mac.sh** - script to fix the local devpod permissions on a mac
+  
 ### Installed Features
 - **Docker-in-Docker** - Run containers inside your development container
 - **Node.js and npm** - JavaScript runtime and package manager
