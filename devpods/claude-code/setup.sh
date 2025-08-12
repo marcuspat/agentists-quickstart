@@ -19,7 +19,7 @@ AGENTS_DIR="/workspaces/agentists-quickstart/agents"
 mkdir -p "$AGENTS_DIR"
 cd "$AGENTS_DIR"
 git clone https://github.com/ChrisRoyse/610ClaudeSubagents.git temp-agents
-cp -r temp-agents/*.md .
+cp -r temp-agents/agents/*.md .
 rm -rf temp-agents
 echo "Installed $(ls -1 *.md | wc -l) agents in $AGENTS_DIR"
 cd /workspaces/agentists-quickstart
