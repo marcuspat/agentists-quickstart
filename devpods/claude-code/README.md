@@ -434,7 +434,135 @@ Create a web-based editor where multiple users can edit markdown simultaneously 
 - Do deep research if any test consistently fails
 ```
 
-## Cost Optimization
+## 🌊 Claude Flow Integration
+
+### Quick Claude Flow Commands
+```bash
+# Initialize Claude Flow with enhanced MCP setup (auto-configures permissions!)
+npx claude-flow@alpha init --force
+
+# Quick AI coordination (recommended for most tasks)
+npx claude-flow@alpha swarm "build me a REST API"
+
+# Launch the full hive-mind system (for complex projects)
+npx claude-flow@alpha hive-mind wizard
+npx claude-flow@alpha hive-mind spawn "build enterprise system" --claude
+
+# Continue previous work
+npx claude-flow@alpha hive-mind resume session-xxxxx-xxxxx
+npx claude-flow@alpha memory query --recent --limit 5
+```
+
+### 🤔 Swarm vs Hive-Mind: Which to Use?
+| Feature | swarm Command | hive-mind Command |
+|---------|---------------|-------------------|
+| Best For | Quick tasks, single objectives | Complex projects, persistent sessions |
+| Setup | Instant - no configuration needed | Interactive wizard setup |
+| Session | Temporary coordination | Persistent with resume capability |
+| Memory | Task-scoped | Project-wide with SQLite storage |
+| Agents | Auto-spawned for task | Manual control with specializations |
+| Use When | "Build X", "Fix Y", "Analyze Z" | Multi-feature projects, team coordination |
+
+**Quick Rule**: Start with `swarm` for most tasks. Use `hive-mind` when you need persistent sessions or complex multi-agent coordination.
+
+### 🧠 Neural Network Capabilities
+```bash
+# Train coordination patterns
+npx claude-flow@alpha neural train --pattern coordination --data "workflow.json"
+
+# Real-time predictions
+npx claude-flow@alpha neural predict --model task-optimizer --input "current-state.json"
+
+# Analyze cognitive behavior
+npx claude-flow@alpha cognitive analyze --behavior "development-patterns"
+```
+
+### 🪝 Advanced Hooks System
+Automated workflow enhancement with pre/post operation hooks:
+
+```bash
+# Manual hook execution
+npx claude-flow hooks pre-task --description "Build REST API" --auto-spawn-agents
+npx claude-flow hooks post-edit --file "src/api.js" --format --train-neural
+npx claude-flow hooks session-end --generate-summary --persist-state
+
+# Fix hook variable interpolation (if needed)
+npx claude-flow@alpha fix-hook-variables
+```
+
+### 📊 GitHub Integration Modes
+```bash
+# Six specialized GitHub coordination modes
+npx claude-flow@alpha github gh-coordinator analyze --analysis-type security
+npx claude-flow@alpha github pr-manager review --multi-reviewer --ai-powered
+npx claude-flow@alpha github release-manager coord --version 2.0.0 --auto-changelog
+npx claude-flow@alpha github repo-architect optimize --structure-analysis
+npx claude-flow@alpha github issue-tracker manage --project-coordination
+npx claude-flow@alpha github sync-coordinator align --multi-package
+```
+
+### 🛡️ Security Features
+```bash
+# Security scanning and monitoring
+npx claude-flow security scan --deep --report
+npx claude-flow security monitor --dashboard
+npx claude-flow security audit --full-trace
+
+# Secure agent creation with resource limits
+npx claude-flow daa agent-create \
+  --security-level high \
+  --resource-limits "cpu:50%,memory:2GB" \
+  --sandbox enabled
+```
+
+### 📊 Performance Metrics
+- **84.8% SWE-Bench Solve Rate**: Superior problem-solving through hive-mind coordination
+- **32.3% Token Reduction**: Efficient task breakdown reduces costs significantly
+- **2.8-4.4x Speed Improvement**: Parallel coordination maximizes throughput
+- **87 MCP Tools**: Most comprehensive AI tool suite available
+
+### 🔄 Workflow Orchestration
+```bash
+# Advanced workflow automation
+npx claude-flow@alpha workflow create --name "CI/CD Pipeline" --parallel
+npx claude-flow@alpha batch process --items "test,build,deploy" --concurrent
+npx claude-flow@alpha pipeline create --config advanced-deployment.json
+```
+
+### 💾 Advanced Memory Features
+```bash
+# Cross-session memory management with SQLite persistence
+npx claude-flow@alpha memory store "project-context" "Full-stack app requirements"
+npx claude-flow@alpha memory query "authentication" --namespace sparc
+npx claude-flow@alpha memory stats  # Shows 12 specialized tables
+npx claude-flow@alpha memory export backup.json --namespace default
+npx claude-flow@alpha memory import project-memory.json
+```
+
+### 🎯 SPARC Development Mode
+```bash
+# Advanced SPARC development with neural enhancement
+npx claude-flow@alpha sparc mode --type "neural-tdd" --auto-learn
+npx claude-flow@alpha sparc workflow --phases "all" --ai-guided --memory-enhanced
+```
+
+### 🏗️ Architecture Overview
+```
+┌─────────────────────────────────────────────────────────┐
+│                    👑 Queen Agent                       │
+│              (Master Coordinator)                       │
+├─────────────────────────────────────────────────────────┤
+│  🏗️ Architect │ 💻 Coder │ 🧪 Tester │ 🔍 Research │ 🛡️ Security │
+├─────────────────────────────────────────────────────────┤
+│           🧠 Neural Pattern Recognition Layer           │
+├─────────────────────────────────────────────────────────┤
+│              💾 Distributed Memory System               │
+├─────────────────────────────────────────────────────────┤
+│            ⚡ 87 MCP Tools Integration Layer            │
+├─────────────────────────────────────────────────────────┤
+│              🛡️ Claude Code Integration                 │
+└─────────────────────────────────────────────────────────┘
+```
 
 ### Recommended Droplet Sizes
 ```bash
