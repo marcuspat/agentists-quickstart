@@ -8,7 +8,7 @@ tmux new-session -d -s workspace -n "Claude-1"
 # Create second window for Claude
 tmux new-window -t workspace:1 -n "Claude-2"
 
-# Create third window for Claude monitor (using the new tool)
+# Create third window for Claude monitor
 tmux new-window -t workspace:2 -n "Claude-Monitor"
 tmux send-keys -t workspace:2 "claude-monitor" C-m
 
