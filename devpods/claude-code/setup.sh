@@ -3,11 +3,25 @@ set -ex  # Add -x for debugging output
 
 # Update and install packages
 sudo apt-get update
-sudo apt-get install -y tmux
+sudo apt-get install -y tmux python3-pip python3-venv
 
 # Install npm packages
 npm install -g @anthropic-ai/claude-code
-npm install -g claude-usage-cli
+
+# Install the new Claude Monitor instead of claude-usage-cli
+# Using pip with virtual environment to avoid conflicts
+python3 -m venv /opt/claude-monitor-env
+source /opt/claude-monitor-env/bin/activate
+pip install claude-monitor
+deactivate
+
+# Create a wrapper script for claude-monitor to use in tmux
+cat << 'EOF' > /usr/local/bin/claude-monitor-wrapper
+#!/bin/bash
+source /opt/claude-monitor-env/bin/activate
+claude-monitor "$@"
+EOF
+chmod +x /usr/local/bin/claude-monitor-wrapper
 
 # Initialize claude-flow in the project directory
 cd /workspaces/agentists-quickstart
@@ -32,6 +46,17 @@ cd /workspaces/agentists-quickstart
 # Create claude.md file
 cat << 'EOF' > claude.md
 # Claude Code Configuration - SPARC Development Environment
+
+## 🚨 CRITICAL: Initialize These Agents First
+
+**At the start of every session, initialize:**
+```bash
+# Load doc-planner agent for documentation planning
+cat /workspaces/agentists-quickstart/agents/doc-planner.md
+
+# Load microtask-breakdown agent for atomic task creation  
+cat /workspaces/agentists-quickstart/agents/microtask-breakdown.md
+```
 
 ## 🚨 CRITICAL: Concurrent Execution Rules
 
