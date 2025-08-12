@@ -29,9 +29,58 @@ rm -rf temp-agents
 echo "Installed $(ls -1 *.md | wc -l) agents in $AGENTS_DIR"
 cd /workspaces/agentists-quickstart
 
-# Create claude.md file
+# Create claude.md file with enhanced content
 cat << 'EOF' > claude.md
 # Claude Code Configuration - SPARC Development Environment
+
+## 🎯 MASTER PATTERN - Always Use This
+**CRITICAL**: Always include in your prompts:
+```
+"Identify all of the subagents that could be useful in any way for this task and then figure out how to utilize the claude-flow hivemind to maximize your ability to accomplish the task."
+```
+
+## 🚨 CRITICAL: Development Fundamentals
+
+### Mandatory for ALL Work:
+1. **doc-planner** agent - ALWAYS use for documentation planning (SPARC workflow)
+2. **microtask-breakdown** agent - ALWAYS use for atomic 10-minute tasks (TDD principles)
+3. **Playwright** - REQUIRED for all frontend/web development (visual verification)
+4. **Current Date** - ALWAYS specify for time-sensitive information (Today: August 12, 2025)
+5. **Recursive Problem Solving** - Break down to atomic, solvable units
+6. **Iterate Until Success** - Tasks continue until achieved
+7. **Deep Research Protocol** - When stuck, search YouTube transcripts, GitHub repos, blogs
+
+### 🔄 Swarm vs Hive-Mind Decision Tree
+| Use Swarm When | Use Hive-Mind When |
+|----------------|-------------------|
+| Quick tasks, single objectives | Complex projects, persistent sessions |
+| "Build X", "Fix Y", "Analyze Z" | Multi-feature projects, team coordination |
+| Temporary coordination | Project-wide memory needed |
+| Simple parallelization | Complex multi-agent coordination |
+
+**Quick Rule**: Start with `swarm` for most tasks. Use `hive-mind` for persistent sessions.
+
+### 🔍 Deep Research Protocol
+When stuck or need information:
+```bash
+# 1. YouTube transcripts for tutorials
+# 2. GitHub repos for implementation examples  
+# 3. Blog posts for best practices
+# 4. Analyze existing code for patterns
+# 5. Search all web-accessible resources
+# Keep recursing until you find a working solution
+```
+
+### 🎭 Visual Verification Loop
+For all frontend/web development:
+```bash
+# 1. Create UI component
+# 2. Install playwright: npm install playwright
+# 3. Take screenshot: playwright screenshot --viewport 1920x1080
+# 4. Verify output matches design
+# 5. Iterate on CSS/layout if needed
+# 6. Keep iterating until pixel-perfect
+```
 
 ## 🚨 CRITICAL: Concurrent Execution Rules
 
@@ -86,12 +135,22 @@ cat << 'EOF' > claude.md
 - `npx claude-flow sparc batch <modes> "<task>"` - Parallel modes
 - `npx claude-flow sparc pipeline "<task>"` - Full pipeline
 
+### Swarm/Hive:
+- `npx claude-flow@alpha swarm "quick task"` - For simple tasks
+- `npx claude-flow@alpha hive-mind wizard` - For complex projects
+- `npx claude-flow@alpha hive-mind spawn "task" --claude` - Spawn with Claude
+- `npx claude-flow@alpha hive-mind resume session-xxxxx` - Continue work
+
 ### Build:
 - `npm run build/test/lint/typecheck`
 
-## 🤖 Agent Reference (54 Total)
+## 🤖 Agent Reference (600+ Total Available)
 
-### Core Development
+### Essential Agents (Always Load First):
+- **doc-planner** - Documentation planning (SPARC)
+- **microtask-breakdown** - Atomic task decomposition
+
+### Core Development (54 Built-in)
 | Agent | Purpose |
 |-------|---------|
 | coder | Implementation |
@@ -100,42 +159,63 @@ cat << 'EOF' > claude.md
 | planner | Strategic planning |
 | researcher | Information gathering |
 
-### Swarm Coordination
-| Agent | Purpose |
-|-------|---------|
-| hierarchical-coordinator | Queen-led |
-| mesh-coordinator | Peer-to-peer |
-| adaptive-coordinator | Dynamic topology |
-| collective-intelligence-coordinator | Hive-mind |
-| swarm-memory-manager | Distributed memory |
+### 600+ Specialized Agents Available
+Located in `/workspaces/agentists-quickstart/agents/`:
+- **Development**: Code review, test generation, debugging, refactoring
+- **Documentation**: Technical writing, API docs, user guides
+- **Architecture**: System design, database modeling, scalability
+- **Security**: Vulnerability scanning, penetration testing
+- **Performance**: Optimization, profiling, bottleneck analysis
+- **Business**: Market analysis, competitive intelligence
+- **Creative**: Content creation, brainstorming, innovation
+- **500+ Non-Coding Agents**: Business, life, productivity
 
-### Specialized
-| Agent | Purpose |
-|-------|---------|
-| backend-dev | API development |
-| mobile-dev | React Native |
-| ml-developer | Machine learning |
-| system-architect | High-level design |
-| sparc-coder | TDD implementation |
-| production-validator | Real validation |
+To use agents:
+```bash
+# List all available agents (600+)
+ls /workspaces/agentists-quickstart/agents/*.md | wc -l
 
-### GitHub Integration
-| Agent | Purpose |
-|-------|---------|
-| github-modes | Comprehensive integration |
-| pr-manager | Pull requests |
-| code-review-swarm | Multi-agent review |
-| issue-tracker | Issue management |
-| release-manager | Release coordination |
+# Search for specific agents
+ls /workspaces/agentists-quickstart/agents/*test*.md
 
-### Performance & Consensus
-| Agent | Purpose |
-|-------|---------|
-| perf-analyzer | Bottleneck identification |
-| performance-benchmarker | Performance testing |
-| byzantine-coordinator | Fault tolerance |
-| raft-manager | Leader election |
-| consensus-builder | Decision-making |
+# Load essential agents
+cat /workspaces/agentists-quickstart/agents/doc-planner.md
+cat /workspaces/agentists-quickstart/agents/microtask-breakdown.md
+```
+
+## 🚀 Prompting Examples
+
+### Example 1: Full Project with Visualizations
+```
+"I need to build a REST API. Look in /workspaces/agentists-quickstart/agents/ and:
+1. Identify all subagents that could be useful for this task
+2. Create a complete development plan with visualizations
+3. Break down the plans into many SVG visualizations
+4. Figure out how to utilize the claude-flow hivemind
+5. Chain the appropriate agents for planning, implementation, testing
+6. Create visualizations of what I would build first
+7. Make sure visualizations are extremely explainable"
+```
+
+### Example 2: Research & Implementation
+```
+"Research Kubernetes LLM serving. Current date is August 12, 2025.
+- Spawn 5 agents to work on this process concurrently
+- Use YouTube transcripts, GitHub repos, blog posts
+- Put output into research/kubernetes folder
+- Keep iterating until a clear implementation path exists
+- If stuck, do deep research to find solutions"
+```
+
+### Example 3: Frontend with Visual Verification
+```
+"Create an animation using anime.js:
+- Create folder /frontend-demo/
+- Spawn 3 agents to work in parallel
+- Install playwright and take screenshots (400x750px viewport)
+- Keep iterating until animation is smooth on mobile
+- If stuck, search GitHub repos and YouTube tutorials"
+```
 
 ## 🚀 Swarm Patterns
 
@@ -206,6 +286,11 @@ claude mcp add claude-flow npx claude-flow@alpha mcp start
 3. **Memory is Key** - Cross-agent coordination
 4. **Monitor Progress** - Real-time tracking
 5. **Enable Hooks** - Automated coordination
+6. **Use Playwright** - Visual verification for frontend
+7. **Recursive Thinking** - Break down to atomic units
+8. **Deep Research** - YouTube, GitHub, blogs when stuck
+9. **Date Context** - Always specify current date
+10. **Master Pattern** - Identify all useful subagents
 
 ## ⚡ Quick Examples
 
@@ -229,19 +314,34 @@ TodoWrite { todos: [
 ]}
 ```
 
+### Visual Verification Task
+```javascript
+// Frontend development with playwright
+Bash("npm install playwright")
+Write("component.jsx", componentCode)
+Bash("npx playwright screenshot --viewport=1920x1080 component.html screenshot.png")
+Read("screenshot.png") // Verify visually
+```
+
 ## 🔗 Resources
 
 - Docs: https://github.com/ruvnet/claude-flow
 - Issues: https://github.com/ruvnet/claude-flow/issues
 - SPARC: https://github.com/ruvnet/claude-flow/docs/sparc.md
+- Agents: /workspaces/agentists-quickstart/agents/
 
 ---
 
-**Remember**: Claude Flow coordinates, Claude Code creates! 
-- Never save working files, text/mds and tests to the root folder.
+**Remember**: 
+- Claude Flow coordinates, Claude Code creates! 
+- Always use doc-planner and microtask-breakdown agents
+- Visual verification with Playwright for all frontend work
+- Recursive problem solving until success
+- Deep research when stuck
+- Never save working files, text/mds and tests to the root folder
 EOF
 
-# Append the rest of the claude.md content
+# Append the rest of the claude.md content (protocols section)
 cat << 'EOF' >> claude.md
 
 ---
@@ -438,10 +538,6 @@ Deploy→E2E→Monitor→Validate→Auto-promote:
 11. **COMPLETE**: Update GitHub issues/boards, generate summary, update swarm memory
 
 ##### 🏆 TARGETS: Zero-downtime, <1% error rate
-EOF
-
-# Create subagents directory notice
-cat << 'EOF' >> claude.md
 
 ---
 
