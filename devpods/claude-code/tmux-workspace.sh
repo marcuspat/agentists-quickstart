@@ -1,4 +1,5 @@
 #!/bin/bash
+
 # Kill existing session if it exists
 tmux kill-session -t workspace 2>/dev/null || true
 
@@ -8,9 +9,9 @@ tmux new-session -d -s workspace -n "Claude-1"
 # Create second window for Claude
 tmux new-window -t workspace:1 -n "Claude-2"
 
-# Create third window for Claude monitor
-tmux new-window -t workspace:2 -n "Claude-Monitor"
-tmux send-keys -t workspace:2 "claude-monitor" C-m
+# Create third window for Claude meter
+tmux new-window -t workspace:2 -n "Claude-Meter"
+tmux send-keys -t workspace:2 "claude-usage-cli" C-m
 
 # Create fourth window for htop
 tmux new-window -t workspace:3 -n "htop"
