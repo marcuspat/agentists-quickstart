@@ -26,9 +26,21 @@ This directory contains the complete configuration for setting up a Claude Code 
 - GitHub Copilot - AI code completion
 - GitHub Copilot Chat - AI chat interface
 
-## Recent Updates (Enhanced Monitoring & Mandatory Agents)
+## Recent Updates (Enhanced Monitoring & Development Fundamentals)
 
-We've upgraded the Claude monitoring system from the basic `claude-usage-cli` to the advanced **Claude Monitor** by @Maciek-roboblog, featuring ML-based predictions, beautiful Rich terminal UI, real-time analytics, and intelligent session limit detection. Additionally, we've implemented a mandatory agent initialization system where the **doc-planner** and **microtask-breakdown** agents are automatically prioritized in every swarm and hive-mind operation. This ensures that every coding session begins with proper documentation planning (following SPARC workflow) and breaks all work into atomic 10-minute tasks (following TDD principles). These two agents are now embedded in the claude.md configuration as mandatory first steps, guaranteeing consistent, well-structured development workflows from the start. The monitor runs in tmux window 2, while the agent initialization protocol is prominently displayed at the top of every Claude session.
+We've upgraded the Claude monitoring system from the basic `claude-usage-cli` to the advanced **Claude Monitor** by @Maciek-roboblog, featuring ML-based predictions, beautiful Rich terminal UI, real-time analytics, and intelligent session limit detection. 
+
+More significantly, we've implemented a comprehensive development methodology where the **doc-planner** and **microtask-breakdown** agents are now mandatory for ALL work - individual tasks, swarms, and hive-minds. This ensures every coding session begins with proper documentation planning (SPARC workflow) and atomic 10-minute tasks (TDD principles).
+
+### New Development Fundamentals:
+- **Playwright Integration**: All frontend/web development now requires Playwright for screenshots and visual verification
+- **Recursive Problem Solving**: Complex problems are broken down recursively to atomic, solvable units
+- **Iterate Until Success**: Tasks continue until the goal is achieved - no giving up
+- **Deep Research Protocol**: When stuck, agents automatically search YouTube transcripts, GitHub repos, and blogs for solutions
+- **Date Context**: Current date is always specified for time-sensitive information
+- **Swarm vs Hive Guidance**: Clear decision tree for choosing the right coordination pattern
+
+These fundamentals are embedded throughout the claude.md configuration, ensuring consistent, well-structured, and persistent development workflows. The monitor runs in tmux window 2, while the enhanced protocols are prominently displayed at session start.
 
 ## Quick Start
 
