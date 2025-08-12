@@ -19,10 +19,19 @@
         "vsls-contrib.gistfs",
         "github.copilot",
         "github.copilot-chat"
-      ]
+      ],
+      "settings": {
+        "terminal.integrated.profiles.linux": {
+          "tmux-workspace": {
+            "path": "/bin/bash",
+            "args": ["-c", "/workspaces/agentists-quickstart/devpods/claude-code/tmux-workspace.sh"]
+          }
+        },
+        "terminal.integrated.defaultProfile.linux": "tmux-workspace"
+      }
     }
   },
   "shutdownAction": "none",
-  "postCreateCommand": "bash /workspaces/agentists-quickstart/devpods/claude-code/setup.sh",
-  "postStartCommand": "tmux new-session -d -s persistent_claude_session || true"
+  "postCreateCommand": "chmod +x /workspaces/agentists-quickstart/devpods/claude-code/setup.sh && /workspaces/agentists-quickstart/devpods/claude-code/setup.sh && chmod +x /workspaces/agentists-quickstart/devpods/claude-code/tmux-workspace.sh",
+  "postStartCommand": "if ! tmux has-session -t persistent_claude_session 2>/dev/null; then tmux new-session -d -s persistent_claude_session 'echo \"Tmux session created automatically. Re-attach with: tmux attach -t persistent_claude_session\"'; fi"
 }
