@@ -663,8 +663,18 @@ DigitalOcean Droplet (VM)
 
 ### Permission Issues
 ```bash
-# Fix DevPod permissions
+# Fix DevPod permissions (all in one command)
+sudo chown -R $(whoami):staff ~/.devpod && \
+find ~/.devpod -type d -exec chmod 755 {} \; && \
+find ~/.devpod -type f -exec chmod 644 {} \; && \
+find ~/.devpod -name "*provider*" -type f -path "*/binaries/*" -exec chmod +x {} \; && \
+find ~/.devpod -name "devpod*" -type f -exec chmod +x {} \;
+
+# Individual commands if needed:
+# Fix ownership
 sudo chown -R $(whoami):staff ~/.devpod
+
+# Fix specific DigitalOcean provider
 chmod +x ~/.devpod/contexts/default/providers/digitalocean/binaries/do_provider/*
 ```
 
