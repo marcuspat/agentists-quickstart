@@ -442,6 +442,119 @@ TodoWrite { todos: [
 - Issues: https://github.com/ruvnet/claude-flow/issues
 - SPARC: https://github.com/ruvnet/claude-flow/docs/sparc.md
 
+## 📍 Agent Location & Discovery
+
+### Finding Agents
+```bash
+# Count all available agents (600+)
+ls /workspaces/agentists-quickstart/agents/*.md | wc -l
+
+# Search for specific agent types
+ls /workspaces/agentists-quickstart/agents/*test*.md
+ls /workspaces/agentists-quickstart/agents/*security*.md
+ls /workspaces/agentists-quickstart/agents/*frontend*.md
+
+# Load any specific agent
+cat /workspaces/agentists-quickstart/agents/[agent-name].md
+```
+
+### Agent Categories Available
+- **Development**: Code review, test generation, debugging, refactoring
+- **Documentation**: Technical writing, API docs, user guides
+- **Architecture**: System design, database modeling, scalability planning
+- **Security**: Vulnerability scanning, penetration testing, compliance
+- **Performance**: Optimization, profiling, bottleneck analysis
+- **Project Management**: Planning, estimation, risk assessment
+- **Data Science**: Analysis, visualization, ML model development
+- **DevOps**: CI/CD, infrastructure as code, monitoring
+- **Business Strategy**: Market analysis, competitive intelligence, growth planning
+- **Creative**: Content creation, brainstorming, innovation workshops
+- **500+ Non-Coding Agents**: Business, life enhancement, productivity
+
+## 🧠 Master Agent Selection Pattern
+
+**For maximum effectiveness, ALWAYS use this pattern:**
+```
+"Look in /workspaces/agentists-quickstart/agents/ and:
+1. Identify all subagents that could be useful for this task
+2. Figure out how to utilize the claude-flow hivemind to maximize ability
+3. Chain appropriate agents for planning, implementation, testing, deployment"
+```
+
+## 💡 Advanced Prompting Patterns
+
+### Visual-First Development
+```
+"Create visualizations of what to build first:
+- Break down plans into many SVG visualizations 
+- Make them simple and explainable
+- Ensure understandable by humans
+- Use Playwright to verify all visual output"
+```
+
+### Multi-Source Research
+```
+"Draw information from:
+- YouTube transcripts (tools/youtube-transcript-api)
+- GitHub repos for implementation examples
+- Blog posts for best practices
+- Web-accessible sources from last 2 years
+- Keep researching until solution found"
+```
+
+### Concurrent Agent Spawning
+```
+"Spawn [N] agents to work on this process concurrently"
+"Create parallel strategies using available MCP servers"
+"Use swarm for independent tasks, hive-mind for shared context"
+```
+
+### Goal-Driven Iteration
+```
+"Define end result: [specific goal]
+Iterate until achieved:
+1. Attempt implementation
+2. Test with Playwright if UI
+3. If fails, deep research
+4. Apply findings and retry
+5. Continue until 100% success"
+```
+
+## 🚀 Quick Reference Commands
+
+### Workspace Management
+```bash
+# SSH into workspace
+devpod ssh agentists-quickstart
+
+# Check system status
+echo "Agents: $(ls -1 /workspaces/agentists-quickstart/agents/*.md | wc -l)"
+echo "Claude-code: $(which claude-code && echo '✓' || echo '✗')"
+echo "Claude-monitor: $(which claude-monitor-wrapper && echo '✓' || echo '✗')"
+
+# Tmux navigation
+tmux attach -t workspace  # Reattach to session
+# Ctrl+b then 0-3 to switch windows
+# Ctrl+b d to detach
+```
+
+### Claude Flow Advanced Features
+```bash
+# Neural network training
+npx claude-flow@alpha neural train --pattern coordination
+
+# Memory management
+npx claude-flow@alpha memory store "context" "value"
+npx claude-flow@alpha memory query "topic" --namespace sparc
+
+# GitHub integration
+npx claude-flow@alpha github pr-manager review --ai-powered
+npx claude-flow@alpha github issue-tracker manage
+
+# Security scanning
+npx claude-flow security scan --deep --report
+```
+
 ---
 
 **Remember**: Claude Flow coordinates, Claude Code creates! 
