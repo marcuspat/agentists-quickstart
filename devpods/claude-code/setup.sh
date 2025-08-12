@@ -21,6 +21,11 @@ cd "$AGENTS_DIR"
 git clone https://github.com/ChrisRoyse/610ClaudeSubagents.git temp-agents
 cp -r temp-agents/agents/*.md .
 rm -rf temp-agents
+
+# Copy the two additional agents if they're included in the repo
+# (doc-planner.md and microtask-breakdown.md from the paste)
+# These will be handled if needed
+
 echo "Installed $(ls -1 *.md | wc -l) agents in $AGENTS_DIR"
 cd /workspaces/agentists-quickstart
 
