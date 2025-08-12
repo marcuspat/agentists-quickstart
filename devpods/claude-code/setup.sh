@@ -8,20 +8,14 @@ sudo apt-get install -y tmux python3-pip python3-venv
 # Install npm packages
 npm install -g @anthropic-ai/claude-code
 
-# Install the new Claude Monitor instead of claude-usage-cli
-# Using pip with virtual environment to avoid conflicts
-python3 -m venv /opt/claude-monitor-env
-source /opt/claude-monitor-env/bin/activate
-pip install claude-monitor
-deactivate
+# Install uv first (recommended installer for claude-monitor)
+curl -LsSf https://astral.sh/uv/install.sh | sh
+source $HOME/.cargo/env
 
-# Create a wrapper script for claude-monitor to use in tmux
-cat << 'EOF' > /usr/local/bin/claude-monitor-wrapper
-#!/bin/bash
-source /opt/claude-monitor-env/bin/activate
-claude-monitor "$@"
-EOF
-chmod +x /usr/local/bin/claude-monitor-wrapper
+# Install claude-monitor using uv (as recommended in docs)
+uv tool install claude-monitor
+
+# The uv installation makes it available directly, no wrapper needed
 
 # Initialize claude-flow in the project directory
 cd /workspaces/agentists-quickstart
@@ -46,117 +40,6 @@ cd /workspaces/agentists-quickstart
 # Create claude.md file
 cat << 'EOF' > claude.md
 # Claude Code Configuration - SPARC Development Environment
-
-## 🚀 SESSION INITIALIZATION PROTOCOL
-
-**EVERY Claude session MUST begin with:**
-```bash
-# Step 1: Initialize mandatory agents
-echo "Loading mandatory agents..."
-cat /workspaces/agentists-quickstart/agents/doc-planner.md
-cat /workspaces/agentists-quickstart/agents/microtask-breakdown.md
-
-# Step 2: Confirm agents loaded
-echo "✅ doc-planner agent loaded"
-echo "✅ microtask-breakdown agent loaded"
-
-# Step 3: Set current date
-echo "Current date: $(date +'%B %d, %Y')"
-
-# Step 4: Ready for all operations
-echo "Ready for individual tasks, swarms, and hive-minds with mandatory agents"
-```
-
-## 🎯 FUNDAMENTAL PRINCIPLES (Apply to ALL Work)
-
-### 1. **Mandatory Agent Usage**
-- **EVERY task** (individual, swarm, or hive) MUST start with doc-planner and microtask-breakdown
-- Even single Claude tasks: "Using doc-planner and microtask-breakdown, [task]"
-- No exceptions - these agents ensure proper planning and atomic task creation
-
-### 2. **Frontend/Web Development Protocol**
-- **ALWAYS** use Playwright for ALL web-facing development
-- Take screenshots at every stage to verify UI functionality
-- Test pattern: Build → Screenshot → Verify → Iterate
-- Required for: React, Vue, HTML/CSS, any UI work
-```bash
-# Mandatory for web development
-npm install playwright
-# Take screenshot after each change
-await page.screenshot({ path: 'verification.png' })
-```
-
-### 3. **Recursive Problem Solving**
-- Use recursive thinking to break down complex problems
-- If hitting a wall, recurse deeper into sub-problems
-- Apply pattern: Problem → Sub-problems → Atomic units → Solve → Combine
-
-### 4. **Iterate Until Goal Achievement**
-- **NEVER** stop until the desired result is achieved
-- Define clear success criteria upfront
-- Keep iterating through: Attempt → Test → Refine → Repeat
-- "Iterate until goal is met" is the default mode
-
-### 5. **Deep Research When Stuck**
-- If ANY agent gets stuck, trigger deep research protocol:
-  1. YouTube transcripts for tutorials
-  2. GitHub repos for implementation examples
-  3. Blog posts for best practices
-  4. Stack Overflow for common issues
-  5. Documentation for latest updates
-- Continue researching until a solution is found
-- "If stuck, do deep research" is mandatory
-
-### 6. **Always Specify Current Date**
-- Every task/prompt MUST include current date
-- Format: "Current date is [Month DD, YYYY]"
-- Critical for time-sensitive information and API updates
-
-### 7. **Swarm vs Hive Decision Tree**
-Ask yourself these questions:
-- Single focused task? → Use **swarm**
-- Complex multi-phase project? → Use **hive-mind**
-- Need persistent memory? → Use **hive-mind**
-- Quick prototype? → Use **swarm**
-- Long-term development? → Use **hive-mind**
-
-## 🚨 CRITICAL: Mandatory Agents for ALL Swarms/Hives
-
-**THESE AGENTS ARE AUTOMATICALLY INCLUDED IN EVERY SWARM/HIVE:**
-1. **doc-planner** - Documentation planning and phase breakdown
-2. **microtask-breakdown** - Atomic 10-minute task creation
-
-### Auto-Load Protocol for Swarms/Hives:
-```bash
-# These commands MUST be run BEFORE any swarm/hive initialization:
-cat /workspaces/agentists-quickstart/agents/doc-planner.md
-cat /workspaces/agentists-quickstart/agents/microtask-breakdown.md
-
-# Then proceed with swarm/hive:
-npx claude-flow@alpha swarm "<task>"
-# OR
-npx claude-flow@alpha hive-mind spawn "<task>"
-```
-
-### 🔴 MANDATORY SWARM/HIVE PATTERN:
-**ALWAYS structure swarm/hive commands to include these agents:**
-```bash
-# For Swarm:
-npx claude-flow@alpha swarm "Using doc-planner and microtask-breakdown agents, <your actual task>"
-
-# For Hive-mind wizard:
-npx claude-flow@alpha hive-mind wizard
-# When prompted, ALWAYS mention: "Start with doc-planner and microtask-breakdown agents"
-
-# For Hive-mind spawn:
-npx claude-flow@alpha hive-mind spawn "First use doc-planner and microtask-breakdown, then <your actual task>" --claude
-```
-
-### 🐝 Hive-Mind Specific Pattern:
-When using `hive-mind`, the mandatory agents are included by:
-1. **In the task description**: Always prefix with "Using doc-planner and microtask-breakdown agents..."
-2. **In the wizard**: When it asks for task details, start with these agents
-3. **In spawned agents**: First two spawned should always be these mandatory agents
 
 ## 🚨 CRITICAL: Concurrent Execution Rules
 
@@ -214,13 +97,7 @@ When using `hive-mind`, the mandatory agents are included by:
 ### Build:
 - `npm run build/test/lint/typecheck`
 
-## 🤖 Agent Reference (54 Total + 2 MANDATORY)
-
-### 🔴 MANDATORY AGENTS (Always Include in Swarms/Hives)
-| Agent | Purpose | Auto-Include |
-|-------|---------|--------------|
-| doc-planner | Documentation planning & phase breakdown | YES - First in every swarm |
-| microtask-breakdown | Atomic 10-minute task creation | YES - Second in every swarm |
+## 🤖 Agent Reference (54 Total)
 
 ### Core Development
 | Agent | Purpose |
@@ -270,46 +147,8 @@ When using `hive-mind`, the mandatory agents are included by:
 
 ## 🚀 Swarm Patterns
 
-### 🚨 MANDATORY: Base Pattern for ALL Swarms/Hives
-**Whether using `swarm`, `hive-mind wizard`, or `hive-mind spawn`, ALWAYS include:**
-
-1. **For Task-based spawning:**
+### Full-Stack Swarm (8 agents)
 ```bash
-# ALWAYS START WITH:
-Task("Documentation Planning", "Plan all phases and create structured docs", "doc-planner")
-Task("Microtask Breakdown", "Break phases into 10-minute atomic tasks", "microtask-breakdown")
-
-# THEN ADD YOUR SPECIFIC AGENTS:
-Task("Architecture", "...", "system-architect")
-Task("Backend", "...", "backend-dev")
-# ... additional agents as needed
-```
-
-2. **For command-line swarm:**
-```bash
-npx claude-flow@alpha swarm "Using doc-planner and microtask-breakdown agents, <task>"
-```
-
-3. **For hive-mind operations:**
-```bash
-# Wizard mode
-npx claude-flow@alpha hive-mind wizard
-# When prompted: "Use doc-planner and microtask-breakdown first, then..."
-
-# Direct spawn
-npx claude-flow@alpha hive-mind spawn "Start with doc-planner and microtask-breakdown, then <task>" --claude
-
-# Resume session (agents already included)
-npx claude-flow@alpha hive-mind resume session-xxxxx
-```
-
-### Full-Stack Swarm Example (10 agents total)
-```bash
-# Mandatory agents first
-Task("Documentation Planning", "Plan phases and structure", "doc-planner")
-Task("Microtask Breakdown", "Create atomic tasks", "microtask-breakdown")
-
-# Then domain-specific agents
 Task("Architecture", "...", "system-architect")
 Task("Backend", "...", "backend-dev")
 Task("Frontend", "...", "mobile-dev")
@@ -375,64 +214,26 @@ claude mcp add claude-flow npx claude-flow@alpha mcp start
 3. **Memory is Key** - Cross-agent coordination
 4. **Monitor Progress** - Real-time tracking
 5. **Enable Hooks** - Automated coordination
-6. **Playwright Always** - For any web/UI work
-7. **Recurse Deep** - Break problems to atomic units
-8. **Research When Stuck** - YouTube, GitHub, blogs
-9. **Date Context** - Always include current date
-10. **Iterate to Success** - Never stop until goal met
 
 ## ⚡ Quick Examples
 
-### Frontend Development with Playwright
+### Research Task
 ```javascript
-// ALWAYS for web UI development
-import { chromium } from 'playwright';
-
-// Build component
-const component = createReactComponent();
-
-// Verify with screenshot
-const browser = await chromium.launch();
-const page = await browser.newPage();
-await page.goto('http://localhost:3000');
-await page.screenshot({ path: 'ui-verification.png' });
-
-// Iterate until pixel-perfect
-while (!meetsDesignSpecs) {
-  adjustCSS();
-  await page.screenshot({ path: `iteration-${count}.png` });
-}
+// Single message with all operations
+mcp__claude-flow__swarm_init { topology: "mesh", maxAgents: 5 }
+mcp__claude-flow__agent_spawn { type: "researcher" }
+mcp__claude-flow__agent_spawn { type: "code-analyzer" }
+mcp__claude-flow__task_orchestrate { task: "Research patterns" }
 ```
 
-### Research Task with Recursion
+### Development Task
 ```javascript
-// Single message with mandatory agents + deep research
-Task("Documentation", "Plan architecture", "doc-planner")
-Task("Breakdown", "Create microtasks", "microtask-breakdown")
-Task("Research", "If stuck, search YouTube/GitHub/blogs", "researcher")
-
-// Recursive problem solving
-function solveProblem(problem) {
-  if (isAtomic(problem)) return solve(problem);
-  const subProblems = breakDown(problem);
-  return subProblems.map(solveProblem).combine();
-}
-```
-
-### Development Task with Date Context
-```javascript
-// Always include current date
-const context = {
-  date: "November 25, 2024",
-  task: "Implement auth using latest OAuth 2.1 spec"
-};
-
-// All todos in ONE call with date context
+// All todos in ONE call
 TodoWrite { todos: [
-  { id: "1", content: "Design API (Nov 25, 2024 context)", priority: "high" },
+  { id: "1", content: "Design API", status: "in_progress", priority: "high" },
   { id: "2", content: "Implement auth", status: "pending", priority: "high" },
-  { id: "3", content: "Playwright tests", status: "pending", priority: "high" },
-  { id: "4", content: "Iterate until working", priority: "medium" }
+  { id: "3", content: "Write tests", status: "pending", priority: "medium" },
+  { id: "4", content: "Documentation", status: "pending", priority: "low" }
 ]}
 ```
 
@@ -441,119 +242,6 @@ TodoWrite { todos: [
 - Docs: https://github.com/ruvnet/claude-flow
 - Issues: https://github.com/ruvnet/claude-flow/issues
 - SPARC: https://github.com/ruvnet/claude-flow/docs/sparc.md
-
-## 📍 Agent Location & Discovery
-
-### Finding Agents
-```bash
-# Count all available agents (600+)
-ls /workspaces/agentists-quickstart/agents/*.md | wc -l
-
-# Search for specific agent types
-ls /workspaces/agentists-quickstart/agents/*test*.md
-ls /workspaces/agentists-quickstart/agents/*security*.md
-ls /workspaces/agentists-quickstart/agents/*frontend*.md
-
-# Load any specific agent
-cat /workspaces/agentists-quickstart/agents/[agent-name].md
-```
-
-### Agent Categories Available
-- **Development**: Code review, test generation, debugging, refactoring
-- **Documentation**: Technical writing, API docs, user guides
-- **Architecture**: System design, database modeling, scalability planning
-- **Security**: Vulnerability scanning, penetration testing, compliance
-- **Performance**: Optimization, profiling, bottleneck analysis
-- **Project Management**: Planning, estimation, risk assessment
-- **Data Science**: Analysis, visualization, ML model development
-- **DevOps**: CI/CD, infrastructure as code, monitoring
-- **Business Strategy**: Market analysis, competitive intelligence, growth planning
-- **Creative**: Content creation, brainstorming, innovation workshops
-- **500+ Non-Coding Agents**: Business, life enhancement, productivity
-
-## 🧠 Master Agent Selection Pattern
-
-**For maximum effectiveness, ALWAYS use this pattern:**
-```
-"Look in /workspaces/agentists-quickstart/agents/ and:
-1. Identify all subagents that could be useful for this task
-2. Figure out how to utilize the claude-flow hivemind to maximize ability
-3. Chain appropriate agents for planning, implementation, testing, deployment"
-```
-
-## 💡 Advanced Prompting Patterns
-
-### Visual-First Development
-```
-"Create visualizations of what to build first:
-- Break down plans into many SVG visualizations 
-- Make them simple and explainable
-- Ensure understandable by humans
-- Use Playwright to verify all visual output"
-```
-
-### Multi-Source Research
-```
-"Draw information from:
-- YouTube transcripts (tools/youtube-transcript-api)
-- GitHub repos for implementation examples
-- Blog posts for best practices
-- Web-accessible sources from last 2 years
-- Keep researching until solution found"
-```
-
-### Concurrent Agent Spawning
-```
-"Spawn [N] agents to work on this process concurrently"
-"Create parallel strategies using available MCP servers"
-"Use swarm for independent tasks, hive-mind for shared context"
-```
-
-### Goal-Driven Iteration
-```
-"Define end result: [specific goal]
-Iterate until achieved:
-1. Attempt implementation
-2. Test with Playwright if UI
-3. If fails, deep research
-4. Apply findings and retry
-5. Continue until 100% success"
-```
-
-## 🚀 Quick Reference Commands
-
-### Workspace Management
-```bash
-# SSH into workspace
-devpod ssh agentists-quickstart
-
-# Check system status
-echo "Agents: $(ls -1 /workspaces/agentists-quickstart/agents/*.md | wc -l)"
-echo "Claude-code: $(which claude-code && echo '✓' || echo '✗')"
-echo "Claude-monitor: $(which claude-monitor-wrapper && echo '✓' || echo '✗')"
-
-# Tmux navigation
-tmux attach -t workspace  # Reattach to session
-# Ctrl+b then 0-3 to switch windows
-# Ctrl+b d to detach
-```
-
-### Claude Flow Advanced Features
-```bash
-# Neural network training
-npx claude-flow@alpha neural train --pattern coordination
-
-# Memory management
-npx claude-flow@alpha memory store "context" "value"
-npx claude-flow@alpha memory query "topic" --namespace sparc
-
-# GitHub integration
-npx claude-flow@alpha github pr-manager review --ai-powered
-npx claude-flow@alpha github issue-tracker manage
-
-# Security scanning
-npx claude-flow security scan --deep --report
-```
 
 ---
 
@@ -574,14 +262,6 @@ Always use Claude Sonnet. Start every Claude session with `model /sonnet`.
 
 ### Agile Delivery Protocols
 Deliver work in manageable chunks through fully automated pipelines. The goal is to deliver features and keep going unattended (don't stop!) until the feature is fully deployed.
-
-**🔴 MANDATORY: All agile work MUST:**
-1. Start with doc-planner and microtask-breakdown agents
-2. Include current date in all planning
-3. Use Playwright for any UI/web components
-4. Apply recursive problem-solving
-5. Iterate until deployment succeeds
-6. Research deeply when blocked
 
 #### Work Chunking Protocol (WCP)
 Feature-based agile with CI integration using EPICs, Features, and Issues:
