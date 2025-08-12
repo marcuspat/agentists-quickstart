@@ -190,7 +190,7 @@ To update the setup (new agents, tools, etc.):
 - [610ClaudeSubagents Repository](https://github.com/ChrisRoyse/610ClaudeSubagents) - The source of 600+ specialized Claude agents
 - [Claude Usage Monitor CLI](https://github.com/jedarden/claude-usage-monitor-cli) - Track your Claude API usage (Note: We use the npm version `claude-usage-cli`)
 
-## Agent Categories (from 610ClaudeSubagents)
+### Agent Categories Available
 The agents cover a wide range of capabilities including:
 - **Development**: Code review, test generation, debugging, refactoring
 - **Documentation**: Technical writing, API docs, user guides
@@ -200,7 +200,21 @@ The agents cover a wide range of capabilities including:
 - **Project Management**: Planning, estimation, risk assessment
 - **Data Science**: Analysis, visualization, ML model development
 - **DevOps**: CI/CD, infrastructure as code, monitoring
-- **And 600+ more specialized roles**
+- **Business Strategy**: Market analysis, competitive intelligence, growth planning
+- **Creative**: Content creation, brainstorming, innovation workshops
+- **And 500+ more specialized roles**
+
+### Basic Agent Commands
+```bash
+# List all available agents
+ls /workspaces/agentists-quickstart/agents/*.md | wc -l
+
+# Search for specific agents
+ls /workspaces/agentists-quickstart/agents/*test*.md
+
+# Load a specific agent
+cat /workspaces/agentists-quickstart/agents/doc-planner.md
+```
 
 ---
 
