@@ -26,6 +26,10 @@ This directory contains the complete configuration for setting up a Claude Code 
 - GitHub Copilot - AI code completion
 - GitHub Copilot Chat - AI chat interface
 
+## Recent Updates (Enhanced Monitoring & Mandatory Agents)
+
+We've upgraded the Claude monitoring system from the basic `claude-usage-cli` to the advanced **Claude Monitor** by @Maciek-roboblog, featuring ML-based predictions, beautiful Rich terminal UI, real-time analytics, and intelligent session limit detection. Additionally, we've implemented a mandatory agent initialization system where the **doc-planner** and **microtask-breakdown** agents are automatically prioritized in every swarm and hive-mind operation. This ensures that every coding session begins with proper documentation planning (following SPARC workflow) and breaks all work into atomic 10-minute tasks (following TDD principles). These two agents are now embedded in the claude.md configuration as mandatory first steps, guaranteeing consistent, well-structured development workflows from the start. The monitor runs in tmux window 2, while the agent initialization protocol is prominently displayed at the top of every Claude session.
+
 ## Quick Start
 
 ### 1. Create DevPod Workspace
