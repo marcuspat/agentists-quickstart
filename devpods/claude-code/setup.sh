@@ -60,9 +60,65 @@ cat /workspaces/agentists-quickstart/agents/microtask-breakdown.md
 echo "✅ doc-planner agent loaded"
 echo "✅ microtask-breakdown agent loaded"
 
-# Step 3: Ready for swarm/hive operations
-echo "Ready for swarm/hive initialization with mandatory agents"
+# Step 3: Set current date
+echo "Current date: $(date +'%B %d, %Y')"
+
+# Step 4: Ready for all operations
+echo "Ready for individual tasks, swarms, and hive-minds with mandatory agents"
 ```
+
+## 🎯 FUNDAMENTAL PRINCIPLES (Apply to ALL Work)
+
+### 1. **Mandatory Agent Usage**
+- **EVERY task** (individual, swarm, or hive) MUST start with doc-planner and microtask-breakdown
+- Even single Claude tasks: "Using doc-planner and microtask-breakdown, [task]"
+- No exceptions - these agents ensure proper planning and atomic task creation
+
+### 2. **Frontend/Web Development Protocol**
+- **ALWAYS** use Playwright for ALL web-facing development
+- Take screenshots at every stage to verify UI functionality
+- Test pattern: Build → Screenshot → Verify → Iterate
+- Required for: React, Vue, HTML/CSS, any UI work
+```bash
+# Mandatory for web development
+npm install playwright
+# Take screenshot after each change
+await page.screenshot({ path: 'verification.png' })
+```
+
+### 3. **Recursive Problem Solving**
+- Use recursive thinking to break down complex problems
+- If hitting a wall, recurse deeper into sub-problems
+- Apply pattern: Problem → Sub-problems → Atomic units → Solve → Combine
+
+### 4. **Iterate Until Goal Achievement**
+- **NEVER** stop until the desired result is achieved
+- Define clear success criteria upfront
+- Keep iterating through: Attempt → Test → Refine → Repeat
+- "Iterate until goal is met" is the default mode
+
+### 5. **Deep Research When Stuck**
+- If ANY agent gets stuck, trigger deep research protocol:
+  1. YouTube transcripts for tutorials
+  2. GitHub repos for implementation examples
+  3. Blog posts for best practices
+  4. Stack Overflow for common issues
+  5. Documentation for latest updates
+- Continue researching until a solution is found
+- "If stuck, do deep research" is mandatory
+
+### 6. **Always Specify Current Date**
+- Every task/prompt MUST include current date
+- Format: "Current date is [Month DD, YYYY]"
+- Critical for time-sensitive information and API updates
+
+### 7. **Swarm vs Hive Decision Tree**
+Ask yourself these questions:
+- Single focused task? → Use **swarm**
+- Complex multi-phase project? → Use **hive-mind**
+- Need persistent memory? → Use **hive-mind**
+- Quick prototype? → Use **swarm**
+- Long-term development? → Use **hive-mind**
 
 ## 🚨 CRITICAL: Mandatory Agents for ALL Swarms/Hives
 
@@ -319,26 +375,64 @@ claude mcp add claude-flow npx claude-flow@alpha mcp start
 3. **Memory is Key** - Cross-agent coordination
 4. **Monitor Progress** - Real-time tracking
 5. **Enable Hooks** - Automated coordination
+6. **Playwright Always** - For any web/UI work
+7. **Recurse Deep** - Break problems to atomic units
+8. **Research When Stuck** - YouTube, GitHub, blogs
+9. **Date Context** - Always include current date
+10. **Iterate to Success** - Never stop until goal met
 
 ## ⚡ Quick Examples
 
-### Research Task
+### Frontend Development with Playwright
 ```javascript
-// Single message with all operations
-mcp__claude-flow__swarm_init { topology: "mesh", maxAgents: 5 }
-mcp__claude-flow__agent_spawn { type: "researcher" }
-mcp__claude-flow__agent_spawn { type: "code-analyzer" }
-mcp__claude-flow__task_orchestrate { task: "Research patterns" }
+// ALWAYS for web UI development
+import { chromium } from 'playwright';
+
+// Build component
+const component = createReactComponent();
+
+// Verify with screenshot
+const browser = await chromium.launch();
+const page = await browser.newPage();
+await page.goto('http://localhost:3000');
+await page.screenshot({ path: 'ui-verification.png' });
+
+// Iterate until pixel-perfect
+while (!meetsDesignSpecs) {
+  adjustCSS();
+  await page.screenshot({ path: `iteration-${count}.png` });
+}
 ```
 
-### Development Task
+### Research Task with Recursion
 ```javascript
-// All todos in ONE call
+// Single message with mandatory agents + deep research
+Task("Documentation", "Plan architecture", "doc-planner")
+Task("Breakdown", "Create microtasks", "microtask-breakdown")
+Task("Research", "If stuck, search YouTube/GitHub/blogs", "researcher")
+
+// Recursive problem solving
+function solveProblem(problem) {
+  if (isAtomic(problem)) return solve(problem);
+  const subProblems = breakDown(problem);
+  return subProblems.map(solveProblem).combine();
+}
+```
+
+### Development Task with Date Context
+```javascript
+// Always include current date
+const context = {
+  date: "November 25, 2024",
+  task: "Implement auth using latest OAuth 2.1 spec"
+};
+
+// All todos in ONE call with date context
 TodoWrite { todos: [
-  { id: "1", content: "Design API", status: "in_progress", priority: "high" },
+  { id: "1", content: "Design API (Nov 25, 2024 context)", priority: "high" },
   { id: "2", content: "Implement auth", status: "pending", priority: "high" },
-  { id: "3", content: "Write tests", status: "pending", priority: "medium" },
-  { id: "4", content: "Documentation", status: "pending", priority: "low" }
+  { id: "3", content: "Playwright tests", status: "pending", priority: "high" },
+  { id: "4", content: "Iterate until working", priority: "medium" }
 ]}
 ```
 
@@ -368,10 +462,13 @@ Always use Claude Sonnet. Start every Claude session with `model /sonnet`.
 ### Agile Delivery Protocols
 Deliver work in manageable chunks through fully automated pipelines. The goal is to deliver features and keep going unattended (don't stop!) until the feature is fully deployed.
 
-**🔴 MANDATORY: All agile work MUST start with:**
-1. Load doc-planner agent for phase planning
-2. Load microtask-breakdown agent for atomic tasks
-3. Then proceed with implementation
+**🔴 MANDATORY: All agile work MUST:**
+1. Start with doc-planner and microtask-breakdown agents
+2. Include current date in all planning
+3. Use Playwright for any UI/web components
+4. Apply recursive problem-solving
+5. Iterate until deployment succeeds
+6. Research deeply when blocked
 
 #### Work Chunking Protocol (WCP)
 Feature-based agile with CI integration using EPICs, Features, and Issues:
