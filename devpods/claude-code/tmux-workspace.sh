@@ -74,9 +74,6 @@ tmux new-window -t workspace:1 -n "Claude-2"
 # Create third window for Claude monitor
 tmux new-window -t workspace:2 -n "Claude-Monitor"
 
-# Start Claude Monitor with Pro plan and Mexico City timezone
-tmux send-keys -t workspace:2 "TZ='America/Mexico_City' claude-monitor --plan pro" C-m
-
 # Create fourth window for htop
 tmux new-window -t workspace:3 -n "htop"
 tmux send-keys -t workspace:3 "htop" C-m
