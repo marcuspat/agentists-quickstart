@@ -22,3 +22,4 @@ tmux select-window -t workspace:0
 
 # Attach to the session
 tmux attach-session -t workspace
+
