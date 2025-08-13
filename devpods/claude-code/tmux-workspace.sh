@@ -1,5 +1,11 @@
 #!/bin/bash
 
+# Run post-setup first
+if [ -f "/workspaces/agentists-quickstart/devpods/claude-code/post-setup.sh" ]; then
+    echo "Running post-setup..."
+    bash /workspaces/agentists-quickstart/devpods/claude-code/post-setup.sh
+fi
+
 # Kill existing session if it exists
 tmux kill-session -t workspace 2>/dev/null || true
 
