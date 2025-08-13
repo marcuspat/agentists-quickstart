@@ -32,6 +32,6 @@
     }
   },
   "shutdownAction": "none",
-  "postCreateCommand": "chmod +x /workspaces/agentists-quickstart/devpods/claude-code/setup.sh && /workspaces/agentists-quickstart/devpods/claude-code/setup.sh && chmod +x /workspaces/agentists-quickstart/devpods/claude-code/tmux-workspace.sh",
+  "postCreateCommand": "chmod +x /workspaces/agentists-quickstart/devpods/claude-code/setup.sh && /workspaces/agentists-quickstart/devpods/claude-code/setup.sh && chmod +x /workspaces/agentists-quickstart/devpods/claude-code/tmux-workspace.sh && chmod +x /workspaces/agentists-quickstart/devpods/claude-code/post-setup.sh && /workspaces/agentists-quickstart/devpods/claude-code/post-setup.sh",
   "postStartCommand": "if ! tmux has-session -t persistent_claude_session 2>/dev/null; then tmux new-session -d -s persistent_claude_session 'echo \"Tmux session created automatically. Re-attach with: tmux attach -t persistent_claude_session\"'; fi"
 }
