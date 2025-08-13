@@ -1,5 +1,4 @@
 #!/bin/bash
-
 # Post-setup configuration
 echo "Running post-setup configuration..."
 
@@ -21,8 +20,15 @@ else
     echo "❌ Claude Monitor installation failed"
 fi
 
-# Copy CLAUDE.md to overwrite the existing claude.md
+# Delete existing claude.md and copy CLAUDE.md to overwrite it
 if [ -f "/workspaces/agentists-quickstart/devpods/claude-code/CLAUDE.md" ]; then
+    # Delete existing claude.md if it exists
+    if [ -f "/workspaces/agentists-quickstart/claude.md" ]; then
+        rm "/workspaces/agentists-quickstart/claude.md"
+        echo "✅ Deleted existing claude.md"
+    fi
+    
+    # Copy CLAUDE.md as claude.md
     cp "/workspaces/agentists-quickstart/devpods/claude-code/CLAUDE.md" "/workspaces/agentists-quickstart/claude.md"
     echo "✅ Copied CLAUDE.md to workspace root as claude.md"
 else
@@ -35,11 +41,13 @@ ADDITIONAL_AGENTS_DIR="/workspaces/agentists-quickstart/devpods/claude-code/addi
 
 if [ -d "$ADDITIONAL_AGENTS_DIR" ]; then
     echo "Copying additional agents..."
+    
     # Copy doc-planner.md
     if [ -f "$ADDITIONAL_AGENTS_DIR/doc-planner.md" ]; then
         cp "$ADDITIONAL_AGENTS_DIR/doc-planner.md" "$AGENTS_DIR/"
         echo "✅ Copied doc-planner.md"
     fi
+    
     # Copy microtask-breakdown.md
     if [ -f "$ADDITIONAL_AGENTS_DIR/microtask-breakdown.md" ]; then
         cp "$ADDITIONAL_AGENTS_DIR/microtask-breakdown.md" "$AGENTS_DIR/"
@@ -65,7 +73,9 @@ tmux new-window -t workspace:1 -n "Claude-2"
 
 # Create third window for Claude monitor
 tmux new-window -t workspace:2 -n "Claude-Monitor"
-tmux send-keys -t workspace:2 "claude-monitor" C-m
+
+# Start Claude Monitor with Pro plan and Mexico City timezone
+tmux send-keys -t workspace:2 "TZ='America/Mexico_City' claude-monitor --plan pro" C-m
 
 # Create fourth window for htop
 tmux new-window -t workspace:3 -n "htop"
