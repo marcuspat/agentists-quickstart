@@ -51,6 +51,6 @@ fi
 
 echo "✅ Post-setup complete!"
 
-# Now run the tmux workspace setup
+# Start tmux workspace
 echo "Starting tmux workspace..."
 bash /workspaces/agentists-quickstart/devpods/claude-code/tmux-workspace.sh
