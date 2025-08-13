@@ -8,24 +8,6 @@ sudo apt-get install -y tmux
 # Install npm packages
 npm install -g @anthropic-ai/claude-code
 
-# Install uv if not already installed
-echo "Installing uv package manager..."
-curl -LsSf https://astral.sh/uv/install.sh | sh
-
-# Source the uv env to make it available immediately
-source $HOME/.cargo/env
-
-# Install Claude Monitor using uv
-echo "Installing Claude Code Usage Monitor..."
-uv tool install claude-monitor
-
-# Verify installation
-if command -v claude-monitor >/dev/null 2>&1; then
-    echo "✅ Claude Monitor installed successfully"
-else
-    echo "❌ Claude Monitor installation failed"
-fi
-
 # Initialize claude-flow in the project directory
 cd /workspaces/agentists-quickstart
 npx claude-flow@alpha init --force
