@@ -19,14 +19,10 @@
         "vsls-contrib.gistfs",
         "github.copilot",
         "github.copilot-chat"
-      ],
-      "settings": {
-        "terminal.integrated.defaultProfile.linux": "bash"
-      }
+      ]
     }
   },
   "shutdownAction": "none",
-  "postCreateCommand": "chmod +x /workspaces/agentists-quickstart/devpods/claude-code/setup.sh && /workspaces/agentists-quickstart/devpods/claude-code/setup.sh",
-  "onCreateCommand": "chmod +x /workspaces/agentists-quickstart/devpods/claude-code/post-setup.sh && chmod +x /workspaces/agentists-quickstart/devpods/claude-code/tmux-workspace.sh",
-  "postStartCommand": "/workspaces/agentists-quickstart/devpods/claude-code/post-setup.sh"
+  "postCreateCommand": "bash /workspaces/agentists-quickstart/devpods/claude-code/setup.sh",
+  "postStartCommand": "bash /workspaces/agentists-quickstart/devpods/claude-code/post-setup.sh"
 }
