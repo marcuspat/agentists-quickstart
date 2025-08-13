@@ -7,7 +7,7 @@ sudo apt-get install -y tmux
 
 # Install npm packages
 npm install -g @anthropic-ai/claude-code
-npm install -g claude-usage-cli
+npm install -g @maciek-roboblog/claude-monitor
 
 # Initialize claude-flow in the project directory
 cd /workspaces/agentists-quickstart
