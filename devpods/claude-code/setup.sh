@@ -469,5 +469,32 @@ These agents provide specialized capabilities for:
 Each agent follows strict CLAUDE.md principles and provides atomic, testable tasks.
 EOF
 
+# Copy the enhanced CLAUDE.md with backup
+echo "Setting up enhanced CLAUDE.md configuration..."
+
+# Check if an existing CLAUDE.md exists and create a backup
+if [ -f "/workspaces/agentists-quickstart/CLAUDE.md" ]; then
+    # Create backups directory if it doesn't exist
+    mkdir -p /workspaces/agentists-quickstart/backups
+    
+    # Create backup with timestamp
+    BACKUP_NAME="CLAUDE.md.backup.$(date +%Y%m%d_%H%M%S)"
+    cp /workspaces/agentists-quickstart/CLAUDE.md "/workspaces/agentists-quickstart/backups/${BACKUP_NAME}"
+    echo "✅ Backed up existing CLAUDE.md to backups/${BACKUP_NAME}"
+fi
+
+# Check if the new CLAUDE.md exists in the devpods directory
+if [ -f "/workspaces/agentists-quickstart/devpods/claude-code/CLAUDE.md" ]; then
+    # Copy the new enhanced CLAUDE.md
+    cp /workspaces/agentists-quickstart/devpods/claude-code/CLAUDE.md /workspaces/agentists-quickstart/CLAUDE.md
+    echo "✅ Enhanced CLAUDE.md copied successfully"
+    echo "   - Includes mandatory doc-planner and microtask-breakdown agents"
+    echo "   - Features Playwright integration and deep research protocols"
+    echo "   - Updated with all development fundamentals"
+else
+    echo "⚠️  Enhanced CLAUDE.md not found in devpods/claude-code/"
+    echo "   Using the default CLAUDE.md created during setup"
+fi
+
 echo "Setup completed successfully!"
 
