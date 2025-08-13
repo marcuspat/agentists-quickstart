@@ -84,5 +84,11 @@ tmux send-keys -t workspace:3 "htop" C-m
 # Select the first window
 tmux select-window -t workspace:0
 
+# Clean up - remove CLAUDE.md if it exists (something might be creating it)
+if [ -f "/workspaces/agentists-quickstart/CLAUDE.md" ]; then
+    rm "/workspaces/agentists-quickstart/CLAUDE.md"
+    echo "✅ Removed CLAUDE.md from workspace root"
+fi
+
 # Attach to the session
 tmux attach-session -t workspace
