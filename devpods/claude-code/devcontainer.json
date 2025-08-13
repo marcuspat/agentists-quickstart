@@ -1,37 +1,40 @@
 {
-  "image": "mcr.microsoft.com/devcontainers/base:debian",
-  "name": "Custom Claude/Rust Dev Workspace",
-  "runArgs": [
-    "--privileged"
-  ],
-  "remoteUser": "vscode",
-  "features": {
-    "ghcr.io/devcontainers/features/docker-in-docker:2": {},
-    "ghcr.io/devcontainers/features/node:1": {},
-    "ghcr.io/devcontainers/features/rust:1": {
-      "version": "1.70"
-    }
-  },
-  "customizations": {
-    "vscode": {
-      "extensions": [
-        "rooveterinaryinc.roo-cline",
-        "vsls-contrib.gistfs",
-        "github.copilot",
-        "github.copilot-chat"
-      ],
-      "settings": {
-        "terminal.integrated.profiles.linux": {
-          "tmux-workspace": {
-            "path": "/bin/bash",
-            "args": ["-c", "/workspaces/agentists-quickstart/devpods/claude-code/tmux-workspace.sh"]
-          }
-        },
-        "terminal.integrated.defaultProfile.linux": "tmux-workspace"
-      }
-    }
-  },
-  "shutdownAction": "none",
-  "postCreateCommand": "chmod +x /workspaces/agentists-quickstart/devpods/claude-code/setup.sh && /workspaces/agentists-quickstart/devpods/claude-code/setup.sh && chmod +x /workspaces/agentists-quickstart/devpods/claude-code/post-setup.sh && /workspaces/agentists-quickstart/devpods/claude-code/post-setup.sh && chmod +x /workspaces/agentists-quickstart/devpods/claude-code/tmux-workspace.sh",
-  "postStartCommand": "if ! tmux has-session -t persistent_claude_session 2>/dev/null; then tmux new-session -d -s persistent_claude_session 'echo \"Tmux session created automatically. Re-attach with: tmux attach -t persistent_claude_session\"'; fi"
+    "image": "mcr.microsoft.com/devcontainers/base:debian",
+    "name": "Custom Claude/Rust Dev Workspace",
+    "runArgs": [
+        "--privileged"
+    ],
+    "remoteUser": "vscode",
+    "features": {
+        "ghcr.io/devcontainers/features/docker-in-docker:2": {},
+        "ghcr.io/devcontainers/features/node:1": {},
+        "ghcr.io/devcontainers/features/rust:1": {
+            "version": "1.70"
+        }
+    },
+    "customizations": {
+        "vscode": {
+            "extensions": [
+                "rooveterinaryinc.roo-cline",
+                "vsls-contrib.gistfs",
+                "github.copilot",
+                "github.copilot-chat"
+            ],
+            "settings": {
+                "terminal.integrated.profiles.linux": {
+                    "tmux-workspace": {
+                        "path": "/bin/bash",
+                        "args": [
+                            "-c",
+                            "/workspaces/agentists-quickstart/devpods/claude-code/tmux-workspace.sh"
+                        ]
+                    }
+                },
+                "terminal.integrated.defaultProfile.linux": "tmux-workspace"
+            }
+        }
+    },
+    "shutdownAction": "none",
+    "postCreateCommand": "chmod +x /workspaces/agentists-quickstart/devpods/claude-code/setup.sh && /workspaces/agentists-quickstart/devpods/claude-code/setup.sh && chmod +x /workspaces/agentists-quickstart/devpods/claude-code/tmux-workspace.sh",
+    "postStartCommand": "if ! tmux has-session -t persistent_claude_session 2>/dev/null; then tmux new-session -d -s persistent_claude_session 'echo \"Tmux session created automatically. Re-attach with: tmux attach -t persistent_claude_session\"'; fi"
 }
