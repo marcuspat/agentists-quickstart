@@ -3,7 +3,10 @@
 # Run post-setup first
 if [ -f "/workspaces/agentists-quickstart/devpods/claude-code/post-setup.sh" ]; then
     echo "Running post-setup..."
+    chmod +x /workspaces/agentists-quickstart/devpods/claude-code/post-setup.sh
     bash /workspaces/agentists-quickstart/devpods/claude-code/post-setup.sh
+else
+    echo "ERROR: post-setup.sh not found!"
 fi
 
 # Kill existing session if it exists
