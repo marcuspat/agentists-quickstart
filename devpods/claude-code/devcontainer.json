@@ -23,6 +23,6 @@
     }
   },
   "shutdownAction": "none",
-  "postCreateCommand": "bash /workspaces/agentists-quickstart/devpods/claude-code/setup.sh",
-  "postStartCommand": "tmux new-session -d -s persistent_claude_session || true"
+  "postCreateCommand": "bash /workspaces/agentists-quickstart/devpods/claude-code/setup.sh && bash /workspaces/agentists-quickstart/devpods/claude-code/post-setup.sh",
+  "postStartCommand": "tmux attach-session -t workspace || true"
 }
